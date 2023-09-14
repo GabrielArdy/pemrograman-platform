@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('menu');
 });
+
+Route::get('/welcome', function () {
+    return view('welcome');
+})->name('welcome');
+
+Route::get('/landing-page', function () {
+    return view('direct');
+})->name('direct');
+
+Route::get('/landing', [FormController::class, 'selamatDatang'])->name('landing');
+
+Route::get('/form', function () {
+    return view('form');
+})->name('form');
+
+Route::post('/greet', [FormController::class, 'greeting'])->name('greet');
